@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторна робота №1. Передпроєктна підготовка</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        body {
+            margin: 0;
+            background: #ffffff;
+            color: #000000;
+            font-family: "Times New Roman", serif;
+            font-size: 14pt;
+            line-height: 1.4;
+        }
+        main {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 2cm 2.5cm;
+            box-sizing: border-box;
+        }
+        p, li {
+            text-align: justify;
+            text-indent: 1.25cm;
+            margin: 0.2cm 0;
+        }
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            text-align: center;
+            margin: 1.2cm 0 0.6cm;
+        }
+        h2 {
+            text-transform: uppercase;
+            font-size: 16pt;
+        }
+        h3 {
+            font-size: 14pt;
+            text-align: left;
+            text-indent: 0;
+        }
+        ol, ul {
+            margin: 0.3cm 0 0.3cm 1.5cm;
+            padding: 0;
+        }
+        ol li, ul li {
+            text-indent: 0;
+            margin: 0.15cm 0;
+        }
+        .title-page {
+            text-align: center;
+            margin-bottom: 2cm;
+        }
+        .title-line {
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+        .title-block {
+            margin: 0.6cm 0;
+        }
+        .signature-block {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1cm;
+        }
+        .signature-block div {
+            width: 45%;
+            text-align: left;
+            text-indent: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.5cm 0 1cm;
+            font-size: 13pt;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 0.3cm;
+        }
+        th {
+            text-align: center;
+            font-weight: 600;
+        }
+        figure {
+            margin: 0.8cm 0;
+            text-align: center;
+        }
+        figcaption {
+            font-size: 12pt;
+            text-indent: 0;
+        }
+        .gantt {
+            width: 100%;
+            border: 1px solid #000;
+            border-collapse: collapse;
+            margin-bottom: 0.3cm;
+        }
+        .gantt td, .gantt th {
+            border: 1px solid #000;
+            padding: 0.2cm;
+            font-size: 12pt;
+        }
+        .gantt .shade {
+            background: #d9d9d9;
+            font-weight: 600;
+            text-align: center;
+        }
+        footer {
+            text-align: center;
+            font-size: 12pt;
+            margin-top: 2cm;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <section class="title-page">
+        <p class="title-line">Міністерство освіти і науки України</p>
+        <p class="title-line">_____________________________ університет</p>
+        <div class="title-block">
+            <p>Кафедра ______________________________</p>
+            <p>Дисципліна «__________________________»</p>
+        </div>
+        <h1>Лабораторна робота №1</h1>
+        <p>«Передпроєктна підготовка та формування пропозицій на розробку програмного забезпечення»</p>
+        <div class="title-block">
+            <p>Виконав(ла): студент(ка) ______ курсу, групи ________</p>
+            <p>_______________________________ (ПІБ)</p>
+            <p>Перевірив(ла): ______________________</p>
+        </div>
+        <div class="signature-block">
+            <div>«____» ____________ 2025 р.</div>
+            <div>Оцінка: _____________</div>
+        </div>
+        <p style="margin-top:2cm;">м. ____________ — 2025</p>
+    </section>
+
+    <section>
+        <h2>1 Мета роботи</h2>
+        <p>Мета лабораторної роботи полягає в опануванні методів передпроєктної підготовки, формуванні обґрунтованих пропозицій на розробку програмного забезпечення та застосуванні методології NABC для опису майбутнього продукту.</p>
+    </section>
+
+    <section>
+        <h2>2 Завдання</h2>
+        <ol>
+            <li>Обрати предметну галузь, що потребує оброблення даних. У межах даної роботи обрано програмний продукт класу «Нотатки».</li>
+            <li>Сформувати проектну пропозицію у форматі NABC (Needs–Approach–Benefits–Competitors) з викладенням Summary, Background, Idea, General concept та Roadmap.</li>
+            <li>Оформити звіт за вимогами ДСТУ із включенням титульного аркуша, постановки завдання, опису проектної пропозиції та висновків.</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>3 Проєктна пропозиція SmartNotes</h2>
+
+        <h3>3.1 Summary (NABC)</h3>
+        <p><strong>Needs.</strong> Користувачам потрібен інструмент, що забезпечує швидке фіксування, систематизацію та пошук різнорідних нотаток з будь-яких пристроїв.</p>
+        <p><strong>Approach.</strong> Пропонується кросплатформний застосунок SmartNotes із підтримкою хмарної синхронізації, повнотекстового пошуку, шаблонів нотаток та автоматичного тегування українською мовою.</p>
+        <p><strong>Benefits.</strong> Рішення скорочує час пошуку інформації, надає нагадування, дозволяє працювати офлайн та прозоро розподіляє функції між безкоштовним і професійним тарифами.</p>
+        <p><strong>Competitors.</strong> Google Keep, Microsoft OneNote та Evernote пропонують базовий функціонал, проте не мають локалізованого NLP і часто мають перевантажений інтерфейс. SmartNotes робить акцент на мінімалізмі й адаптації під український ринок.</p>
+
+        <h3>3.2 Background</h3>
+        <p>Сегмент застосунків для нотаток насичений, однак користувачі стикаються з проблемами організації великої кількості записів, браком локалізованих підказок та складною тарифною політикою. Більшість рішень не забезпечують якісний офлайн-доступ або інтегровані механізми швидкого групування записів за змістом.</p>
+        <p>Підхід SmartNotes полягає в поєднанні класичного нотатника з аналітичними функціями: автотегуванням, рекомендаціями до перегляду та інтеграціями з календарем. Це дозволяє користувачам різних категорій (студентам, менеджерам, дослідникам) зберігати структуру персональних знань.</p>
+
+        <h3>3.3 Idea</h3>
+        <p>Основна ідея полягає в розробленні «розумного» нотатника, який розпізнає ключові сутності у записах, визначає пріоритети та автоматично формує зв'язки між нотатками. Користувач отримує шаблони для лекцій, зустрічей, чеклістів, можливість спільної роботи та контроль термінів через інтегровані нагадування.</p>
+
+        <h3>3.4 General concept</h3>
+        <p>Архітектура системи подана на рисунку 1. Застосунок взаємодіє з контекстом користувача, отримує дані з бази рецептів (нотаток) і формує необхідну кількість продуктів (записів). Ядро включає CRUD-операції, тегування, вкладені списки, офлайн-кеш та механізми безпеки (OAuth2, шифрування та контроль доступу).</p>
+        <figure>
+            <img src="data:image/svg+xml;utf8,
+                <svg xmlns='http://www.w3.org/2000/svg' width='420' height='250' viewBox='0 0 420 250'>
+                    <rect x='130' y='20' width='160' height='80' fill='none' stroke='black' stroke-width='2'/>
+                    <text x='210' y='65' font-size='16' font-family='Times New Roman' text-anchor='middle'>Додаток</text>
+                    <ellipse cx='210' cy='200' rx='90' ry='35' fill='none' stroke='black' stroke-width='2'/>
+                    <text x='210' y='205' font-size='14' font-family='Times New Roman' text-anchor='middle'>БД нотаток</text>
+                    <line x1='70' y1='70' x2='130' y2='60' stroke='black' stroke-width='3'/>
+                    <polygon points='130,60 120,55 120,65' fill='black'/>
+                    <text x='50' y='55' font-size='14' font-family='Times New Roman'>Контекст</text>
+                    <line x1='290' y1='60' x2='350' y2='70' stroke='black' stroke-width='3'/>
+                    <polygon points='350,70 340,75 340,65' fill='black'/>
+                    <text x='360' y='55' font-size='14' font-family='Times New Roman'>Кількість записів</text>
+                    <line x1='210' y1='100' x2='210' y2='165' stroke='black' stroke-width='3'/>
+                    <polygon points='210,165 205,150 215,150' fill='black'/>
+                    <line x1='210' y1='165' x2='210' y2='110' stroke='black' stroke-width='3'/>
+                    <polygon points='210,110 205,125 215,125' fill='black'/>
+                </svg>" alt="Структура SmartNotes" />
+            <figcaption>Рисунок 1 — Узагальнена структура ПЗ SmartNotes</figcaption>
+        </figure>
+
+        <h3>3.5 Roadmap</h3>
+        <p>Загальний план реалізації наведено в таблиці 1 та на діаграмі термінів (рис. 2). Кожен етап завершується контрольним результатом і потребує визначених ресурсів.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Позначення</th>
+                    <th>Тривалість</th>
+                    <th>Зміст робіт</th>
+                    <th>Очікуваний результат</th>
+                    <th>Ресурси</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>a</td>
+                    <td>1–2 тижні</td>
+                    <td>Планування та збір вимог</td>
+                    <td>Консолідований план розробки</td>
+                    <td>Аналітик, керівник проєкту</td>
+                </tr>
+                <tr>
+                    <td>б</td>
+                    <td>2–3 тижні</td>
+                    <td>Розробка технічного завдання</td>
+                    <td>Затверджене ТЗ</td>
+                    <td>Аналітик, архітектор</td>
+                </tr>
+                <tr>
+                    <td>в</td>
+                    <td>3–6 тижні</td>
+                    <td>Технічний проєкт та прототип UI</td>
+                    <td>Проектна документація</td>
+                    <td>Архітектор, UX дизайнер</td>
+                </tr>
+                <tr>
+                    <td>г</td>
+                    <td>6–10 тижні</td>
+                    <td>Розробка коду, інтеграція сервісів</td>
+                    <td>Перший робочий реліз</td>
+                    <td>Команда розробників</td>
+                </tr>
+                <tr>
+                    <td>д</td>
+                    <td>11–12 тижні</td>
+                    <td>Функціональне та навантажувальне тестування</td>
+                    <td>Звіт з тестування</td>
+                    <td>QA команда</td>
+                </tr>
+                <tr>
+                    <td>е</td>
+                    <td>13–14 тижні</td>
+                    <td>Опис застосування, підготовка документації</td>
+                    <td>Посібник користувача</td>
+                    <td>Технічний письменник</td>
+                </tr>
+                <tr>
+                    <td>ж</td>
+                    <td>15 тиждень</td>
+                    <td>Підсумкове оформлення, презентація</td>
+                    <td>Керівництво користувача, презентація</td>
+                    <td>Керівник проєкту</td>
+                </tr>
+            </tbody>
+        </table>
+        <figure>
+            <table class="gantt">
+                <tr>
+                    <th rowspan="2">Етап</th>
+                    <th colspan="15">Тиждень</th>
+                </tr>
+                <tr>
+                    <td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td>
+                </tr>
+                <tr>
+                    <td>a</td>
+                    <td class="shade"></td><td class="shade"></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>б</td>
+                    <td></td><td class="shade"></td><td class="shade"></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>в</td>
+                    <td></td><td></td><td class="shade"></td><td class="shade"></td><td class="shade"></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>г</td>
+                    <td></td><td></td><td></td><td></td><td></td><td class="shade"></td><td class="shade"></td><td class="shade"></td><td class="shade"></td><td class="shade"></td>
+                    <td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>д</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="shade"></td><td class="shade"></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>е</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="shade"></td><td class="shade"></td><td></td>
+                </tr>
+                <tr>
+                    <td>ж</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="shade"></td>
+                </tr>
+            </table>
+            <figcaption>Рисунок 2 — Діаграма плану розробки ПЗ SmartNotes</figcaption>
+        </figure>
+    </section>
+
+    <section>
+        <h2>4 Висновки</h2>
+        <p>У результаті виконання лабораторної роботи сформовано проектну пропозицію програмного забезпечення SmartNotes відповідно до вимог методології NABC. Проведено аналіз предметної галузі, окреслено переваги та недоліки існуючих рішень, наведено загальну концепцію та дорожню карту впровадження. Отримані матеріали можуть бути використані як основа для подальшого технічного проєктування та впровадження продукту.</p>
+    </section>
+
+    <footer>
+        <p>ДСТУ 3008:2015 — Оформлення звітів з науково-дослідних робіт.</p>
+    </footer>
+</main>
+</body>
+</html>
+

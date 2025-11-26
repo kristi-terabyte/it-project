@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторна робота №4. Організація розробки SmartNotes</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        body {
+            margin: 0;
+            background: #ffffff;
+            color: #000000;
+            font-family: "Times New Roman", serif;
+            font-size: 14pt;
+            line-height: 1.4;
+        }
+        main {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 2cm 2.5cm;
+            box-sizing: border-box;
+        }
+        p, li {
+            text-align: justify;
+            text-indent: 1.25cm;
+            margin: 0.2cm 0;
+        }
+        h1, h2, h3 {
+            font-weight: 600;
+            text-align: center;
+            margin: 1.2cm 0 0.6cm;
+        }
+        h2 {
+            text-transform: uppercase;
+            font-size: 16pt;
+        }
+        h3 {
+            font-size: 14pt;
+            text-align: left;
+            text-indent: 0;
+        }
+        ol {
+            margin: 0.3cm 0 0.3cm 1.3cm;
+            padding: 0;
+        }
+        ol li {
+            text-indent: 0;
+            margin: 0.15cm 0;
+        }
+        .title-page {
+            text-align: center;
+            margin-bottom: 2cm;
+        }
+        .title-line {
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+        .title-block {
+            margin: 0.6cm 0;
+        }
+        .signature-block {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1cm;
+        }
+        .signature-block div {
+            width: 45%;
+            text-align: left;
+            text-indent: 0;
+        }
+        figure {
+            margin: 0.8cm 0;
+            text-align: center;
+        }
+        figcaption {
+            font-size: 12pt;
+            text-indent: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.5cm 0 1cm;
+            font-size: 13pt;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 0.3cm;
+            vertical-align: top;
+        }
+        th {
+            text-align: center;
+            font-weight: 600;
+        }
+        footer {
+            text-align: center;
+            font-size: 12pt;
+            margin-top: 2cm;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <section class="title-page">
+        <p class="title-line">Міністерство освіти і науки України</p>
+        <p class="title-line">_____________________________ університет</p>
+        <div class="title-block">
+            <p>Кафедра ______________________________</p>
+            <p>Дисципліна «__________________________»</p>
+        </div>
+        <h1>Лабораторна робота №4</h1>
+        <p>«Організація розроблення SmartNotes з використанням GitHub Projects та Git»</p>
+        <div class="title-block">
+            <p>Виконав(ла): студент(ка) ______ курсу, групи ________</p>
+            <p>_______________________________ (ПІБ)</p>
+            <p>Перевірив(ла): ______________________</p>
+        </div>
+        <div class="signature-block">
+            <div>«____» ____________ 2025 р.</div>
+            <div>Оцінка: _____________</div>
+        </div>
+        <p style="margin-top:2cm;">м. ____________ — 2025</p>
+    </section>
+
+    <section>
+        <h2>1 Мета роботи</h2>
+        <p>Опанувати інструменти GitHub Projects, Kanban-підхід, систему контролю версій Git та засоби Code Review для організації розроблення застосунку SmartNotes.</p>
+    </section>
+
+    <section>
+        <h2>2 Завдання</h2>
+        <ol>
+            <li>Створити Kanban-дошку в GitHub Project та зафіксувати основні картки робіт.</li>
+            <li>Створити віддалений репозиторій на GitHub — <a href="https://github.com/kristi-terabyte/it-project.git">kristi-terabyte/it-project</a>.</li>
+            <li>Вибрати засіб розроблення коду (Visual Studio Code з розширеннями GitHub Copilot та Git Graph).</li>
+            <li>Розгорнути вихідний код SmartNotes, використовуючи Git, гілки та Pull Request, синхронізований із Kanban-картками.</li>
+            <li>Підготувати звіт з описом виконаних кроків, скріншотами дошки та історією комітів.</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>3 Виконання завдання</h2>
+
+        <h3>3.1 Створення Kanban-дошки</h3>
+        <p>У GitHub Projects створено дошку «SmartNotes Roadmap» з колонками «To do», «In Progress», «Review», «Done». Для кожного етапу додано картки: «Ініціалізація репозиторію», «Модуль нотаток», «Пошуковий сервіс», «Нагадування», «Тестування та реліз». Під час виконання роботи статуси карток оновлювалися синхронно з прогресом у Git.</p>
+        <figure>
+            <img src="screenshots/kanban_smartnotes.png" alt="Kanban-дошка SmartNotes" style="max-width:100%;border:1px solid #000;">
+            <figcaption>Рисунок 1 — Kanban-дошка GitHub Projects</figcaption>
+        </figure>
+
+        <h3>3.2 Репозиторій та інструменти</h3>
+        <p>На GitHub створено репозиторій <code>kristi-terabyte/it-project</code>. Локальна копія ініціалізована командами:</p>
+        <pre style="white-space:pre-wrap;font-family:'Courier New',monospace;font-size:12pt;border:1px solid #000;padding:0.4cm;margin:0.6cm 0;text-indent:0;">echo "# it-project" &gt;&gt; README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/kristi-terabyte/it-project.git
+git push -u origin main</pre>
+        <p>Основне IDE — Visual Studio Code, що забезпечило інтеграцію з Git, форматування коду та перегляд Pull Requests.</p>
+
+        <h3>3.3 Вихідний код та Pull Requests</h3>
+        <p>Розробку SmartNotes розділено на тематичні гілки. Для кожної функції створювався Pull Request з переглядом коду. Після перевірки PR зливався в гілку <code>main</code>, а відповідна картка на дошці переводилася у «Done».</p>
+        <table>
+            <caption style="text-align:left;text-indent:0;font-weight:600;margin-bottom:0.2cm;">Таблиця 1 — Приклади гілок та Pull Request</caption>
+            <thead>
+                <tr>
+                    <th>Гілка</th>
+                    <th>Задача</th>
+                    <th>PR/Статус</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>feature/note-editor</td>
+                    <td>Редактор нотаток із автотегами</td>
+                    <td>PR #1 «Note editor MVP» — merged</td>
+                </tr>
+                <tr>
+                    <td>feature/search-service</td>
+                    <td>Повнотекстовий пошук і фільтри</td>
+                    <td>PR #2 «Search &amp; filters» — merged</td>
+                </tr>
+                <tr>
+                    <td>feature/reminders</td>
+                    <td>Нагадування та push-сповіщення</td>
+                    <td>PR #3 «Reminder service» — in review</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>3.4 Історія комітів</h3>
+        <p>Кожен крок фіксувався комітами з префіксами, що співвідносяться з картками Kanban (наприклад, <code>[KAN-01] init project</code>, <code>[KAN-03] search filters</code>). На рисунку 2 подано фрагмент історії з CLI.</p>
+        <figure>
+            <img src="screenshots/git_history.png" alt="Історія комітів Git" style="max-width:100%;border:1px solid #000;">
+            <figcaption>Рисунок 2 — Історія комітів у гілці main</figcaption>
+        </figure>
+    </section>
+
+    <section>
+        <h2>4 Висновки</h2>
+        <p>Під час лабораторної роботи №4 організовано командний процес розроблення SmartNotes: створено Kanban-дошку, репозиторій GitHub, налаштовано інструменти розробки та виконано серію Pull Request. Практика показала ефективність відслідковування задач через GitHub Projects і важливість рецензій коду перед інтеграцією у гілку main.</p>
+    </section>
+
+    <footer>
+        <p>ДСТУ 3008:2015 — Оформлення звітів з науково-дослідних робіт.</p>
+    </footer>
+</main>
+</body>
+</html>
+

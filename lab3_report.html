@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторна робота №3. Об'єктно-орієнтоване проєктування</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        body {
+            margin: 0;
+            background: #ffffff;
+            color: #000000;
+            font-family: "Times New Roman", serif;
+            font-size: 14pt;
+            line-height: 1.4;
+        }
+        main {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 2cm 2.5cm;
+            box-sizing: border-box;
+        }
+        p, li {
+            text-align: justify;
+            text-indent: 1.25cm;
+            margin: 0.2cm 0;
+        }
+        h1, h2, h3 {
+            font-weight: 600;
+            text-align: center;
+            margin: 1.2cm 0 0.6cm;
+        }
+        h2 {
+            text-transform: uppercase;
+            font-size: 16pt;
+        }
+        h3 {
+            font-size: 14pt;
+            text-align: left;
+            text-indent: 0;
+        }
+        ol, ul {
+            margin: 0.3cm 0 0.3cm 1.5cm;
+            padding: 0;
+        }
+        ol li, ul li {
+            text-indent: 0;
+            margin: 0.15cm 0;
+        }
+        .title-page {
+            text-align: center;
+            margin-bottom: 2cm;
+        }
+        .title-line {
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+        .title-block {
+            margin: 0.6cm 0;
+        }
+        .signature-block {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1cm;
+        }
+        .signature-block div {
+            width: 45%;
+            text-align: left;
+            text-indent: 0;
+        }
+        figure {
+            margin: 0.8cm 0;
+            text-align: center;
+        }
+        figcaption {
+            font-size: 12pt;
+            text-indent: 0;
+        }
+        svg {
+            border: 1px solid #000;
+            background: #fff;
+        }
+        footer {
+            text-align: center;
+            font-size: 12pt;
+            margin-top: 2cm;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <section class="title-page">
+        <p class="title-line">Міністерство освіти і науки України</p>
+        <p class="title-line">_____________________________ університет</p>
+        <div class="title-block">
+            <p>Кафедра ______________________________</p>
+            <p>Дисципліна «__________________________»</p>
+        </div>
+        <h1>Лабораторна робота №3</h1>
+        <p>«Об'єктно-орієнтоване проєктування програмного забезпечення SmartNotes»</p>
+        <div class="title-block">
+            <p>Виконав(ла): студент(ка) ______ курсу, групи ________</p>
+            <p>_______________________________ (ПІБ)</p>
+            <p>Перевірив(ла): ______________________</p>
+        </div>
+        <div class="signature-block">
+            <div>«____» ____________ 2025 р.</div>
+            <div>Оцінка: _____________</div>
+        </div>
+        <p style="margin-top:2cm;">м. ____________ — 2025</p>
+    </section>
+
+    <section>
+        <h2>1 Мета роботи</h2>
+        <p>Мета лабораторної роботи полягає у застосуванні об'єктно-орієнтованої методології проєктування для програмного забезпечення SmartNotes, побудові UML-діаграм та оформленні результатів відповідно до вимог ДСТУ 3008:2015.</p>
+    </section>
+
+    <section>
+        <h2>2 Завдання</h2>
+        <ol>
+            <li>Обрати об'єктно-орієнтовану методологію проєктування.</li>
+            <li>Створити діаграми прецедентів, класів і послідовностей для SmartNotes.</li>
+            <li>Підготувати пояснення до кожної діаграми та оформити звіт.</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>3 Виконання завдання</h2>
+
+        <h3>3.1 Діаграма прецедентів</h3>
+        <p>На рисунку 1 подано основні прецеденти взаємодії користувача зі SmartNotes: створення й організація нотаток, пошук, налаштування нагадувань та експорт результатів.</p>
+        <figure>
+            <svg width="520" height="320" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <style>
+                        .actor { font-style: italic; }
+                        .usecase { fill: none; stroke: #000; }
+                    </style>
+                </defs>
+                <line x1="60" y1="80" x2="60" y2="200" stroke="#000" stroke-width="2"/>
+                <line x1="40" y1="120" x2="80" y2="120" stroke="#000" stroke-width="2"/>
+                <line x1="60" y1="200" x2="30" y2="260" stroke="#000" stroke-width="2"/>
+                <line x1="60" y1="200" x2="90" y2="260" stroke="#000" stroke-width="2"/>
+                <circle cx="60" cy="60" r="20" fill="none" stroke="#000" stroke-width="2"/>
+                <text x="60" y="20" text-anchor="middle" class="actor" font-size="14">Користувач</text>
+                <ellipse cx="260" cy="70" rx="120" ry="40" class="usecase"/>
+                <text x="260" y="70" text-anchor="middle">Керування нотатками</text>
+                <ellipse cx="260" cy="170" rx="120" ry="40" class="usecase"/>
+                <text x="260" y="170" text-anchor="middle">Пошук і фільтри</text>
+                <ellipse cx="260" cy="260" rx="120" ry="40" class="usecase"/>
+                <text x="260" y="260" text-anchor="middle">Перегляд історії</text>
+                <ellipse cx="420" cy="120" rx="90" ry="35" class="usecase"/>
+                <text x="420" y="120" text-anchor="middle">Нагадування</text>
+                <ellipse cx="420" cy="230" rx="90" ry="35" class="usecase"/>
+                <text x="420" y="230" text-anchor="middle">Експорт/друк</text>
+                <line x1="80" y1="80" x2="150" y2="70" stroke="#000"/>
+                <line x1="80" y1="150" x2="140" y2="165" stroke="#000"/>
+                <line x1="80" y1="220" x2="140" y2="240" stroke="#000"/>
+                <line x1="320" y1="140" x2="380" y2="120" stroke="#000"/>
+                <line x1="320" y1="200" x2="380" y2="230" stroke="#000"/>
+            </svg>
+            <figcaption>Рисунок 1 — Діаграма прецедентів SmartNotes</figcaption>
+        </figure>
+
+        <h3>3.2 Діаграма класів</h3>
+        <p>Класи системи поділено на рівні інтерфейсу, бізнес-логіки (обробка нотаток, тегів, нагадувань) та доступу до даних. Основні зв'язки показано на рисунку 2.</p>
+        <figure>
+            <svg width="600" height="360" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <style>
+                        .classbox { fill: none; stroke: #000; }
+                        .classname { font-weight: 600; }
+                    </style>
+                </defs>
+                <rect x="40" y="40" width="200" height="90" class="classbox"/>
+                <line x1="40" y1="75" x2="240" y2="75" stroke="#000"/>
+                <text x="140" y="60" text-anchor="middle" class="classname">UIController</text>
+                <text x="50" y="95">+newNote()</text>
+                <text x="50" y="115">+showSearch()</text>
+
+                <rect x="340" y="40" width="220" height="120" class="classbox"/>
+                <line x1="340" y1="75" x2="560" y2="75" stroke="#000"/>
+                <text x="450" y="60" text-anchor="middle" class="classname">NotesService</text>
+                <text x="350" y="95">-noteRepository</text>
+                <text x="350" y="115">+save(note)</text>
+                <text x="350" y="135">+search(query)</text>
+
+                <rect x="40" y="200" width="200" height="120" class="classbox"/>
+                <line x1="40" y1="235" x2="240" y2="235" stroke="#000"/>
+                <text x="140" y="220" text-anchor="middle" class="classname">Note</text>
+                <text x="50" y="255">+title</text>
+                <text x="50" y="275">+content</text>
+
+                <rect x="340" y="220" width="220" height="120" class="classbox"/>
+                <line x1="340" y1="255" x2="560" y2="255" stroke="#000"/>
+                <text x="450" y="240" text-anchor="middle" class="classname">HistoryRepository</text>
+                <text x="350" y="275">+save(entry)</text>
+                <text x="350" y="295">+list()</text>
+
+                <line x1="240" y1="85" x2="340" y2="100" stroke="#000" marker-end="url(#arrow)"/>
+                <line x1="140" y1="200" x2="140" y2="130" stroke="#000" marker-end="url(#arrow)"/>
+                <line x1="450" y1="160" x2="450" y2="220" stroke="#000" marker-end="url(#arrow)"/>
+
+                <defs>
+                    <marker id="arrow" markerWidth="12" markerHeight="6" refX="12" refY="3" orient="auto">
+                        <polygon points="0 0,12 3,0 6" fill="#000"/>
+                    </marker>
+                </defs>
+            </svg>
+            <figcaption>Рисунок 2 — Діаграма класів SmartNotes</figcaption>
+        </figure>
+
+        <h3>3.3 Діаграма послідовностей</h3>
+        <p>Діаграма на рисунку 3 відображає послідовність дій під час створення нотатки та її синхронізації: користувач ініціює процес, інтерфейс передає дані сервісу нотаток, який зберігає результат та подію історії.</p>
+        <figure>
+            <svg width="640" height="360" xmlns="http://www.w3.org/2000/svg">
+                <rect x="40" y="40" width="0" height="0" fill="none"/>
+                <line x1="80" y1="60" x2="80" y2="320" stroke="#000" stroke-dasharray="5,5"/>
+                <line x1="200" y1="60" x2="200" y2="320" stroke="#000" stroke-dasharray="5,5"/>
+                <line x1="360" y1="60" x2="360" y2="320" stroke="#000" stroke-dasharray="5,5"/>
+                <line x1="520" y1="60" x2="520" y2="320" stroke="#000" stroke-dasharray="5,5"/>
+                <text x="80" y="40" text-anchor="middle">Користувач</text>
+                <text x="200" y="40" text-anchor="middle">UIController</text>
+                <text x="360" y="40" text-anchor="middle">NotesService</text>
+                <text x="520" y="40" text-anchor="middle">HistoryRepository</text>
+
+                <line x1="80" y1="90" x2="200" y2="90" stroke="#000" marker-end="url(#seqArrow)"/>
+                <text x="140" y="80" text-anchor="middle" font-size="12">createNote()</text>
+
+                <line x1="200" y1="120" x2="360" y2="120" stroke="#000" marker-end="url(#seqArrow)"/>
+                <text x="280" y="110" text-anchor="middle" font-size="12">save(note)</text>
+
+                <line x1="360" y1="150" x2="200" y2="150" stroke="#000" marker-end="url(#seqArrow)"/>
+                <text x="280" y="140" text-anchor="middle" font-size="12">noteSaved</text>
+
+                <line x1="200" y1="180" x2="520" y2="180" stroke="#000" marker-end="url(#seqArrow)"/>
+                <text x="360" y="170" text-anchor="middle" font-size="12">log(history)</text>
+
+                <line x1="520" y1="210" x2="200" y2="210" stroke="#000" marker-end="url(#seqArrow)"/>
+                <text x="360" y="200" text-anchor="middle" font-size="12">ack()</text>
+
+                <line x1="200" y1="240" x2="80" y2="240" stroke="#000" marker-end="url(#seqArrow)"/>
+                <text x="140" y="230" text-anchor="middle" font-size="12">showSuccess()</text>
+
+                <defs>
+                    <marker id="seqArrow" markerWidth="12" markerHeight="6" refX="12" refY="3" orient="auto">
+                        <polygon points="0 0,12 3,0 6" fill="#000"/>
+                    </marker>
+                </defs>
+            </svg>
+            <figcaption>Рисунок 3 — Діаграма послідовностей створення нотатки</figcaption>
+        </figure>
+    </section>
+
+    <section>
+        <h2>4 Висновки</h2>
+        <p>У лабораторній роботі №3 обрано об'єктно-орієнтовану методологію. Створено UML-діаграми прецедентів, класів і послідовностей для SmartNotes, що деталізують взаємодію користувача, компоненти системи та обмін повідомленнями. Отримані матеріали слугують основою для подальшого проєктування та реалізації програмного забезпечення.</p>
+    </section>
+
+    <footer>
+        <p>ДСТУ 3008:2015 — Оформлення звітів з науково-дослідних робіт.</p>
+    </footer>
+</main>
+</body>
+</html>
+
