@@ -66,3 +66,7 @@ python -m smartnotes.gui
   ```
   Файл буде збережено як `screenshots/kanban_board.png`.
 
+## Change Log
+
+Останні оновлення описані у файлі `CHANGELOG.md` та дублюються в історії Git.
+
