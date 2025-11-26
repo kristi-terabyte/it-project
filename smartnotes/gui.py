@@ -51,22 +51,43 @@ class SmartNotesGUI:
 
         filter_frame = ttk.Frame(list_frame)
         filter_frame.grid(row=0, column=0, sticky="ew", pady=(0, 10))
-        filter_frame.columnconfigure(1, weight=1)
+        for col in range(2):
+            filter_frame.columnconfigure(col, weight=1)
 
-        ttk.Label(filter_frame, text="Тег:").grid(row=0, column=0, padx=(0, 5))
+        ttk.Label(filter_frame, text="Тег:").grid(row=0, column=0, padx=(0, 5), sticky="w")
         self.tag_var = tk.StringVar()
         self.tag_combo = ttk.Combobox(filter_frame, textvariable=self.tag_var, state="readonly")
         self.tag_combo.grid(row=0, column=1, sticky="ew")
         self.tag_combo.bind("<<ComboboxSelected>>", lambda _: self._refresh_notes())
 
-        ttk.Label(filter_frame, text="Пошук:").grid(row=1, column=0, padx=(0, 5), pady=(5, 0))
+        ttk.Label(filter_frame, text="Пошук:").grid(row=1, column=0, padx=(0, 5), pady=(5, 0), sticky="w")
         self.search_var = tk.StringVar()
         search_entry = ttk.Entry(filter_frame, textvariable=self.search_var)
         search_entry.grid(row=1, column=1, sticky="ew", pady=(5, 0))
         search_entry.bind("<KeyRelease>", lambda _: self._refresh_notes())
 
+        ttk.Label(filter_frame, text="Сортування:").grid(row=2, column=0, padx=(0, 5), pady=(5, 0), sticky="w")
+        self.sort_options = [
+            ("date_desc", "За датою (нові → старі)"),
+            ("date_asc", "За датою (старі → нові)"),
+            ("title_asc", "За назвою (А → Я)"),
+            ("title_desc", "За назвою (Я → А)"),
+        ]
+        self.sort_var = tk.StringVar(value=self.sort_options[0][0])
+        self.sort_display_var = tk.StringVar(value=self.sort_options[0][1])
+        self.sort_combo = ttk.Combobox(
+            filter_frame,
+            textvariable=self.sort_display_var,
+            state="readonly",
+        )
+        self.sort_combo["values"] = [label for _, label in self.sort_options]
+        self.sort_combo.current(0)
+        self.sort_var.set(self.sort_options[0][0])
+        self.sort_combo.grid(row=2, column=1, sticky="ew", pady=(5, 0))
+        self.sort_combo.bind("<<ComboboxSelected>>", lambda _: self._on_sort_change())
+
         button_frame = ttk.Frame(filter_frame)
-        button_frame.grid(row=2, column=0, columnspan=2, pady=5, sticky="ew")
+        button_frame.grid(row=3, column=0, columnspan=2, pady=5, sticky="ew")
         ttk.Button(button_frame, text="Оновити", command=self._refresh_notes).pack(side="left", padx=(0, 5))
         ttk.Button(button_frame, text="Очистити фільтри", command=self._clear_filters).pack(side="left")
 
@@ -126,10 +147,14 @@ class SmartNotesGUI:
         self.status_var = tk.StringVar(value="Готово до роботи.")
         status_label = ttk.Label(self.root, textvariable=self.status_var, anchor="w", padding=5)
         status_label.grid(row=2, column=0, columnspan=2, sticky="ew")
+        self.preview_text.tag_configure("highlight", background="#fde68a", foreground="#1f2937")
 
     def _clear_filters(self) -> None:
         self.tag_var.set("")
         self.search_var.set("")
+        self.sort_combo.current(0)
+        self.sort_display_var.set(self.sort_options[0][1])
+        self.sort_var.set(self.sort_options[0][0])
         self._refresh_notes()
 
     def _refresh_notes(self) -> None:
@@ -139,6 +164,7 @@ class SmartNotesGUI:
             notes = self.storage.search(keyword)
         else:
             notes = self.storage.list_notes(tag=tag)
+        notes = self._sort_notes(notes)
         self.notes = notes
         self.listbox.delete(0, tk.END)
         self._populate_tag_choices(notes)
@@ -149,6 +175,25 @@ class SmartNotesGUI:
         self.preview_text.delete("1.0", tk.END)
         self.preview_text.configure(state="disabled")
         self.status_var.set(f"Завантажено {len(notes)} нотаток.")
+
+    def _sort_notes(self, notes: list[Note]) -> list[Note]:
+        mode = self.sort_var.get()
+        if mode == "date_asc":
+            return sorted(notes, key=lambda n: n.created_at)
+        if mode == "title_asc":
+            return sorted(notes, key=lambda n: n.title.lower())
+        if mode == "title_desc":
+            return sorted(notes, key=lambda n: n.title.lower(), reverse=True)
+        # default date_desc
+        return sorted(notes, key=lambda n: n.created_at, reverse=True)
+
+    def _on_sort_change(self) -> None:
+        label = self.sort_display_var.get()
+        for value, option_label in self.sort_options:
+            if option_label == label:
+                self.sort_var.set(value)
+                break
+        self._refresh_notes()
 
     def _populate_tag_choices(self, notes: list[Note]) -> None:
         tags = sorted({tag for note in notes for tag in note.tags})
@@ -172,6 +217,7 @@ class SmartNotesGUI:
         self.preview_text.insert(tk.END, f"Створено: {note.created_at}\n\n")
         self.preview_text.insert(tk.END, note.body)
         self.preview_text.configure(state="disabled")
+        self._apply_search_highlight()
         self.status_var.set(f"Обрана нотатка: {note.title}")
 
     def _create_or_update(self) -> None:
@@ -181,6 +227,10 @@ class SmartNotesGUI:
 
         if not title or not body:
             messagebox.showwarning("Помилка", "Необхідно вказати заголовок і текст.")
+            return
+
+        if self._has_duplicate_title(title, exclude_id=self.selected_note_id):
+            messagebox.showerror("SmartNotes", "Нотатка з таким заголовком вже існує.")
             return
 
         if self.selected_note_id:
@@ -228,6 +278,30 @@ class SmartNotesGUI:
         self.root.clipboard_clear()
         self.root.clipboard_append(body)
         self.status_var.set("Текст скопійовано в буфер обміну.")
+
+    def _has_duplicate_title(self, title: str, exclude_id: Optional[str] = None) -> bool:
+        normalized = title.strip().lower()
+        for existing in self.storage.list_notes():
+            if exclude_id and existing.id == exclude_id:
+                continue
+            if existing.title.strip().lower() == normalized:
+                return True
+        return False
+
+    def _apply_search_highlight(self) -> None:
+        keyword = self.search_var.get().strip()
+        self.preview_text.configure(state="normal")
+        self.preview_text.tag_remove("highlight", "1.0", tk.END)
+        if keyword:
+            idx = "1.0"
+            while True:
+                idx = self.preview_text.search(keyword, idx, nocase=True, stopindex=tk.END)
+                if not idx:
+                    break
+                end_idx = f"{idx}+{len(keyword)}c"
+                self.preview_text.tag_add("highlight", idx, end_idx)
+                idx = end_idx
+        self.preview_text.configure(state="disabled")
 
     def run(self) -> None:
         self.root.mainloop()
