@@ -143,14 +143,14 @@
         <h2>3 Виконання завдання</h2>
 
         <h3>3.1 Створення Kanban-дошки</h3>
-        <p>У GitHub Projects створено дошку «SmartNotes Roadmap» з колонками «To do», «In Progress», «Review», «Done». Для кожного етапу додано картки: «Ініціалізація репозиторію», «Модуль нотаток», «Пошуковий сервіс», «Нагадування», «Тестування та реліз». Під час виконання роботи статуси карток оновлювалися синхронно з прогресом у Git.</p>
+        <p>У GitHub Projects створено дошку «SmartNotes Roadmap» з колонками «Backlog», «In Progress», «Code Review», «Done». Для неї описано картки KAN-01…KAN-05 (ініціалізація репозиторію, CLI ядро, пошук, документація, ревʼю). Під час розроблення картки зміщувалися між колонками синхронно з прогресом гілок, що дозволило відслідковувати стан задач в режимі реального часу.</p>
         <figure>
             <img src="screenshots/kanban_smartnotes.png" alt="Kanban-дошка SmartNotes" style="max-width:100%;border:1px solid #000;">
             <figcaption>Рисунок 1 — Kanban-дошка GitHub Projects</figcaption>
         </figure>
 
         <h3>3.2 Репозиторій та інструменти</h3>
-        <p>На GitHub створено репозиторій <code>kristi-terabyte/it-project</code>. Локальна копія ініціалізована командами:</p>
+        <p>На GitHub створено репозиторій <code>kristi-terabyte/it-project</code>. Основне IDE — Visual Studio Code з розширеннями GitHub Pull Requests та Git Graph, що дозволяє переглядати дифи безпосередньо в редакторі. Локальна копія ініціалізована командами:</p>
         <pre style="white-space:pre-wrap;font-family:'Courier New',monospace;font-size:12pt;border:1px solid #000;padding:0.4cm;margin:0.6cm 0;text-indent:0;">echo "# it-project" &gt;&gt; README.md
 git init
 git add README.md
@@ -161,7 +161,8 @@ git push -u origin main</pre>
         <p>Основне IDE — Visual Studio Code, що забезпечило інтеграцію з Git, форматування коду та перегляд Pull Requests.</p>
 
         <h3>3.3 Вихідний код та Pull Requests</h3>
-        <p>Розробку SmartNotes розділено на тематичні гілки. Для кожної функції створювався Pull Request з переглядом коду. Після перевірки PR зливався в гілку <code>main</code>, а відповідна картка на дошці переводилася у «Done».</p>
+        <p>Функціонал SmartNotes реалізовано як CLI-додаток (<code>smartnotes/app.py</code>) та графічний інтерфейс на Tkinter (<code>smartnotes/gui.py</code>). Дані зберігаються у <code>data/notes.json</code>, а користувач може керувати нотатками як через команди <code>add</code>/<code>list</code>/<code>search</code>/<code>delete</code>, так і через вікно з формами та списком нотаток.</p>
+        <p>Робочий процес ґрунтується на гілках і Pull Request. Після завершення фічі створюється PR, який привʼязується до канбан-картки й проходить ревʼю (рис. 3). Табл. 1 ілюструє ключові гілки:</p>
         <table>
             <caption style="text-align:left;text-indent:0;font-weight:600;margin-bottom:0.2cm;">Таблиця 1 — Приклади гілок та Pull Request</caption>
             <thead>
@@ -173,9 +174,9 @@ git push -u origin main</pre>
             </thead>
             <tbody>
                 <tr>
-                    <td>feature/note-editor</td>
-                    <td>Редактор нотаток із автотегами</td>
-                    <td>PR #1 «Note editor MVP» — merged</td>
+                    <td>feature/cli-foundation</td>
+                    <td>Каркас CLI, JSON-сховище</td>
+                    <td>PR #1 «SmartNotes CLI foundation» — merged</td>
                 </tr>
                 <tr>
                     <td>feature/search-service</td>
@@ -187,11 +188,17 @@ git push -u origin main</pre>
                     <td>Нагадування та push-сповіщення</td>
                     <td>PR #3 «Reminder service» — in review</td>
                 </tr>
+                <tr>
+                    <td>feature/docs-report</td>
+                    <td>Оновлення README та звіту</td>
+                    <td>PR #4 «Documentation set» — draft</td>
+                </tr>
             </tbody>
         </table>
+        <p>Огляд коду виконувався в інтерфейсі GitHub (diff, коментарі, зміна статусів Kanban). Скриншот перевірки Pull Request наведено у файлі <code>screenshots/pr_overview.png</code>.</p>
 
         <h3>3.4 Історія комітів</h3>
-        <p>Кожен крок фіксувався комітами з префіксами, що співвідносяться з картками Kanban (наприклад, <code>[KAN-01] init project</code>, <code>[KAN-03] search filters</code>). На рисунку 2 подано фрагмент історії з CLI.</p>
+        <p>Кожен крок фіксувався комітами з префіксами, що співвідносяться з картками Kanban (наприклад, <code>[KAN-01] init project</code>, <code>[KAN-03] search filters</code>). На рисунку 2 подано фрагмент історії (<code>git log --oneline --graph</code>), що демонструє злиття гілок і відстеження прогресу.</p>
         <figure>
             <img src="screenshots/git_history.png" alt="Історія комітів Git" style="max-width:100%;border:1px solid #000;">
             <figcaption>Рисунок 2 — Історія комітів у гілці main</figcaption>
