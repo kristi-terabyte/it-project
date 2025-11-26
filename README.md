@@ -60,4 +60,9 @@ python -m smartnotes.gui
 
 - Kanban-дошка: GitHub Projects → `SmartNotes Roadmap`.
 - Кожна картка зв'язана з відповідною гілкою/PR (див. звіт у `lab4_report.html`).
+- Зображення канбану можна відтворити скриптом:
+  ```bash
+  python scripts/generate_kanban.py
+  ```
+  Файл буде збережено як `screenshots/kanban_board.png`.
 
